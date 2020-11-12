@@ -6,62 +6,84 @@
 </head>
 
 <body>
-  <input type="text">
+<input type="text">
 </body>
 <script type="text/javascript">
-//  let div = document.createElement('div');
-//  for(var item in div){
-//     console.log(item)
-//  }
-//  let keyObj = {};
-//  for(let key in keyObj){
-//     console.log(key)
-//  }
-// 先执行循环 然后最后结果为5;
-// for(var i = 0;i<5;i++){
-//   setTimeout(function(){
-//       console.log(i);
-//   },1000);
-// }
 
-
-// for(let i = 0;i<5;i++){
-//   setTimeout(function(){
-//       console.log(i+1);
-//   },1000*i);
-// }
-// 函数式声明不会变量提升
-// fn();
-// const fn = function(){
-//   console.log('111')
-// }
-
-
-
-// const obj = {
-//   name: 'ssf',
-//   getName(){
-//     console.log(this.name);
-//   }
-// }
-// let name = 'wtt';
-
-// let g1 = obj.getName();
-// console.log(g1);
-
-let obj = {
-  name:'ssf',
-  getName: function(){
-    console.log(this);
-    function a(){
-      console.log(this);
+  {
+    // for + settimeout + let?
+    for (let i = 0; i < 5; i++) { // let作用于 会顺序执行代码 所以代码是1 2 3 4 5 每一秒输出一次
+      setTimeout(function () {
+        console.log(i + 1);
+      }, 1000 * i);
     }
 
-    a();
-  }
-}
+    // for + settimeout + var?
+    for(var j = 0;j<5;j++){ // var 会优先执行 是同步代码 然后会执行到4 再++  所以j = 5;
+      setTimeout(function (){
+        console.log(j)
+      },j*1000)
+    }
 
-obj.getName();
+  // 如果想要实现像let这样的效果 每秒依次输出1 2 3 4 5 看下边
+
+    for (var i = 0; i < 5; i++) { // let作用于 会顺序执行代码 所以代码是1 2 3 4 5 每一秒输出一次
+      (function (i){
+        setTimeout(function (){
+          console.log(i+1);
+        }, 1000 * (i+1));
+      })(i)
+    }
+
+  }
+
+  // 函数式声明不会变量提升
+
+  {
+    fn(); // ReferenceError: Cannot access 'fn' before initialization
+    const fn = function () {
+      console.log('111')
+    }
+
+    // 普通函数是可以自己提前的 变量提升
+    clog('555');
+    function clog(str){
+      console.log(str);
+    }
+  }
+
+  //  this指向问题
+  {
+    const obj = {
+      name: 'ssf',
+      getName() {
+        console.log(this.name);
+      }
+    }
+    let name = 'wtt';
+
+    let g1 = obj.getName();// obj调用 所以this指向obj
+    console.log(g1);
+  }
+
+
+  // 函数作用域
+
+  {
+    let obj = {
+      name: 'ssf',
+      getName: function () {
+        console.log(this); // obj
+        function a() {
+          console.log(this);
+        }
+
+        a();
+      }
+    }
+
+    obj.getName();
+  }
 
 
 </script>
