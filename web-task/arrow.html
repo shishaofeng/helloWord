@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>面试学习</title>
+    <style>
+        .column:nth-of-type(1),
+        .column:nth-of-type(2) {
+            float: left;
+            width: 100px;
+            height: 300px;
+            background-color: green;
+        }
+
+        .column:nth-of-type(2) {
+            float: right;
+        }
+
+        .column:nth-of-type(3) {
+            overflow: hidden;
+            /*创建bfc*/
+            height: 300px;
+            background-color: red;
+            color: #ffffff;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column">
+        66666666666666666666666666666666
+    </div>
+</body>
+<script type="text/javascript">
+    let parent = {
+        name: 'ssf',
+        child: {
+            getName: () => {
+                console.log(this);
+            },
+            getName2() {
+                console.log(this);
+            },
+            getName3: function () {
+                console.log(this);
+            }
+        }
+    };
+
+    parent.child.getName();
+    parent.child.getName2();
+    parent.child.getName3();
+
+
+
+
+    // 使用箭头函数
+    var circle = {
+        radius: 10,
+        outerDiameter() {
+            var innerDiameter = () => {
+                console.log(2 * this.radius);
+                console.log(this);
+                console.log(this === window);
+                console.log(this === circle);
+
+
+            };
+            innerDiameter();
+        }
+    };
+    circle.outerDiameter(); // 打印20
+
+</script>
+
+</html>

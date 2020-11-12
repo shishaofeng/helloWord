@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>面试学习</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+
+  // 原型继承 基本类型是没有问题的 有问题的是引用类型
+  // extendByPrototype();
+  function extendByPrototype() {
+    // 父函数
+    function SuperType() {
+      this.property = true;
+    }
+    // 返回属性值
+    SuperType.prototype.getSuperTypeValue = function () {
+      return this.property;
+    }
+
+    // 子函数
+    function SubType() {
+      this.subPoroperty = false;
+    }
+
+
+    // 返回属性值
+    SuperType.prototype.getSubTypeValue = function () {
+      return this.property;
+    }
+
+    SubType.prototype = new SuperType(); // 将父函数的实例给继承函数的原型
+
+    let instance = new SubType(); // 实例化
+
+    alert(instance.getSuperTypeValue());// 子类盗用父级函数方法
+  }
+
+
+  /*为了解决引用类型在原型继承中带来的问题 （就是父类的实例属性会变成子类的实属性）
+  可以借用构造函数
+  */
+
+  // extendByCall();
+  function extendByCall(){
+    
+ // 父函数
+    function SuperType() {
+      this.colors = ['red','blue','green'];
+    }
+
+    // 子函数
+    function SubType() {
+      SuperType.call(this);
+    }
+
+    let instance1 = new SubType();
+    instance1.colors.push('black');
+
+    console.log(instance1.colors);
+
+    let instance2 = new SubType();
+    console.log(instance2.colors);
+  }
+
+  // call可以向超类型函数传递参数 这是借用构造函数的优势
+
+  // 不过构造函数缺点是方法都是在构造函数中定义的 复用性很差 基本上直接借用构造函数的使用是很少的
+  
+
+
+  // 组合继承是将原型继承和构造函数的优点全部结合的一种经典继承
+  
+
+
+
+
+</script>
+
+</html>

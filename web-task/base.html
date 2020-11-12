@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>面试学习</title>
+</head>
+
+<body>
+  <input type="text">
+</body>
+<script type="text/javascript">
+//  let div = document.createElement('div');
+//  for(var item in div){
+//     console.log(item)
+//  }
+//  let keyObj = {};
+//  for(let key in keyObj){
+//     console.log(key)
+//  }
+// 先执行循环 然后最后结果为5;
+// for(var i = 0;i<5;i++){
+//   setTimeout(function(){
+//       console.log(i);
+//   },1000);
+// }
+
+
+// for(let i = 0;i<5;i++){
+//   setTimeout(function(){
+//       console.log(i+1);
+//   },1000*i);
+// }
+// 函数式声明不会变量提升
+// fn();
+// const fn = function(){
+//   console.log('111')
+// }
+
+
+
+// const obj = {
+//   name: 'ssf',
+//   getName(){
+//     console.log(this.name);
+//   }
+// }
+// let name = 'wtt';
+
+// let g1 = obj.getName();
+// console.log(g1);
+
+let obj = {
+  name:'ssf',
+  getName: function(){
+    console.log(this);
+    function a(){
+      console.log(this);
+    }
+
+    a();
+  }
+}
+
+obj.getName();
+
+
+</script>
+
+</html>

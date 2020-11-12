@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>promise</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+  function loadimg(src){
+      const promiseFn = new Promise((resolve,reject)=>{
+        let img = document.createElement('img');
+        img.onload = function(){
+            resolve(src);
+        }
+
+        img.onerror = function(){
+            reject();
+        }
+        img.src = src;
+      })
+      return promiseFn;
+  }
+
+  
+</script>
+
+</html>

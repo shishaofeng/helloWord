@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>面试学习</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	class MathHandle {
+		constructor(x,y){
+			this.x = x;
+			this.y = y;
+		}
+		add(){
+			return this.x + this.y;
+		}
+	}
+
+	const math1 = new MathHandle(1,2);
+	console.log(math1.add());
+	console.log(typeof MathHandle);
+	
+	console.log(MathHandle.prototype.constructor === MathHandle);
+
+
+  console.log(math1.__proto__ === MathHandle.prototype);
+
+</script>
+</html>
