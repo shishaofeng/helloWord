@@ -54,9 +54,11 @@
     }
   };
 
+
+
   parent.child.getName(); // 箭头函数 会一直找到父级不是箭头函数的普通函数作为它的作用域 这里找不到  this指向了window
   parent.child.getName2(); // 普通函数的作用于是自己调用的作用域名
-  parent.child.getName3(); // 第三个也是普通函数 所哟作用域为本身这个函数
+  parent.child.getName3(); // 第三个也是普通函数 所以作用域为本身这个函数
 
 
   // 使用箭头函数
